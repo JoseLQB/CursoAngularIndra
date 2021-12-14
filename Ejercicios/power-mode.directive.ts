@@ -5,10 +5,10 @@ import { Directive, HostBinding, HostListener, Input, OnInit } from '@angular/co
 })
 export class PowerModeDirective implements OnInit{
 
- // @HostBinding('style.float') position: string = "";
   @HostBinding('style.color') color: string = "black";
+  @HostBinding('style.float') float: string = "";
 
-/* @Input('appPowerMode') col: string = "red"; */
+ @Input('appPowerMode') col: string = "red"; 
 
   constructor() { }
 
@@ -18,9 +18,11 @@ export class PowerModeDirective implements OnInit{
   }
 
   
-  @HostListener('changeColor') onChangeColor(){
-    const colors: Array<string> = ["red", "yellow", "orange", "green", "blue"] 
-    this.color = colors[Math.round(Math.random()*5)];
+  @HostListener('input') onChangeColor(){
+    const colors: Array<string> = ["red", "yellow", "orange", "green", "blue"];
+    const position: Array<string> = ["left", "right"]
+    this.color = colors[Math.floor(Math.random()*5)];
+    this.float = position[Math.floor(Math.random()*2)];
   }
 
 }
